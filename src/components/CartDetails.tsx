@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { useAppDispatch } from "../redux/hooks";
+import { updateQuantity } from "../redux/features/cartSlice";
 
 const CartDetails = ({ product }: any) => {
+  const dispatch = useAppDispatch();
+  const handleUpdateQuantity = (type: string, id: string) => {
+    const payload = { type, id };
+    dispatch(updateQuantity(payload));
+  };
   return (
     <div className="flex justify-center items-center space-x-10 border border-gray-300 lg:w-fit w-full px-3 py-1  rounded-sm h-24 ">
       <div>
@@ -12,12 +19,12 @@ const CartDetails = ({ product }: any) => {
 
         <p className="text-lg font-bold">${product.price}</p>
       </div>
-      <div className="flex justify-center items-center">
-        <button>
+      <div className="flex justify-center items-center space-x-3">
+        <button onClick={() => handleUpdateQuantity("increment", product.id)}>
           <Plus />
         </button>
-        <span>0</span>
-        <button>
+        <span>{product.quantity}</span>
+        <button onClick={() => handleUpdateQuantity("decrement", product.id)}>
           <Minus />
         </button>
       </div>

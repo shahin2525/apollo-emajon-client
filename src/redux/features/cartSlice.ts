@@ -24,10 +24,23 @@ export const cartSlice = createSlice({
         state.products.push({ ...action.payload, quantity: 1 });
       }
     },
+    updateQuantity: (state: any, action) => {
+      const products = state.products.map((product: any) => {
+        if (product.id === action.payload.id) {
+          if (action.payload.type === "increment") {
+            product.quantity += 1;
+          } else if (action.payload.type === "decrement") {
+            product.quantity -= 1;
+          }
+        }
+        return product;
+      });
+      state.products = products.filter((product: any) => product.quantity > 0);
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateQuantity } = cartSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type
 // // export const selectCount = (state: RootState) => state.counter.value;

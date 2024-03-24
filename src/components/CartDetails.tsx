@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2 } from "lucide-react";
 
 const CartDetails = ({ product }: any) => {
   return (
@@ -11,6 +11,15 @@ const CartDetails = ({ product }: any) => {
         <h3 className="text-lg font-bold truncate  mb-2">{product.name}</h3>
 
         <p className="text-lg font-bold">${product.price}</p>
+      </div>
+      <div className="flex justify-center items-center">
+        <button>
+          <Plus />
+        </button>
+        <span>0</span>
+        <button>
+          <Minus />
+        </button>
       </div>
       <div>
         <button

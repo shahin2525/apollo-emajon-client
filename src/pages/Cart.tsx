@@ -1,7 +1,6 @@
 import CartDetails from "../components/CartDetails";
 import OrderSummary from "../components/OrderSummary";
 import { useAppSelector } from "../redux/hooks";
-import { store } from "../redux/store";
 
 const Cart = () => {
   // const products = getAllProducts();

@@ -37,10 +37,15 @@ export const cartSlice = createSlice({
       });
       state.products = products.filter((product: any) => product.quantity > 0);
     },
+    removeCart: (state: any, action) => {
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload.id
+      );
+    },
   },
 });
 
-export const { addToCart, updateQuantity } = cartSlice.actions;
+export const { addToCart, updateQuantity, removeCart } = cartSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type
 // // export const selectCount = (state: RootState) => state.counter.value;

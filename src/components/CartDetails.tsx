@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useAppDispatch } from "../redux/hooks";
-import { updateQuantity } from "../redux/features/cartSlice";
+import { removeCart, updateQuantity } from "../redux/features/cartSlice";
 
 const CartDetails = ({ product }: any) => {
   const dispatch = useAppDispatch();
   const handleUpdateQuantity = (type: string, id: string) => {
     const payload = { type, id };
     dispatch(updateQuantity(payload));
+  };
+  const handleCartRemove = (e, id: string) => {
+    e.stopPropagation();
+    dispatch(removeCart({ id }));
   };
   return (
     <div className="flex justify-center items-center space-x-10 border border-gray-300 lg:w-fit w-full px-3 py-1  rounded-sm h-24 ">
@@ -31,7 +35,7 @@ const CartDetails = ({ product }: any) => {
       <div>
         <button
           onClick={(e) => {
-            e.stopPropagation();
+            handleCartRemove(e, product.id);
           }}
           className="bg-red-200 text-white p-2 rounded-full w-full"
         >

@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   products: [],
   selectedItems: 0,
-  price: 0,
+  totalPrice: 0,
   tax: 0,
   taxRate: 0.1,
   grandTotal: 0,
@@ -23,6 +23,7 @@ export const cartSlice = createSlice({
       if (!isExist) {
         state.products.push({ ...action.payload, quantity: 1 });
       }
+      state.selectedItems = selectSelectItems(state);
     },
     updateQuantity: (state: any, action) => {
       const products = state.products.map((product: any) => {
@@ -45,17 +46,16 @@ export const cartSlice = createSlice({
   },
 });
 
-export const selectSelectItems = (state: any) => {
+export const selectSelectItems = (state: any) =>
   state.products.reduce((total: number, product: any) => {
     return Number(total + product.quantity);
   }, 0);
-};
 
-export const selectTotalPrice = (state: any) => {
+export const selectTotalPrice = (state: any) =>
   state.products.reduce((total: number, product: any) => {
-    return Number(total + product.quantity * product.price);
+    return Number(total + product.quantity * product.totalPrice);
   }, 0);
-};
+
 export const selectTotalTax = (state: any) =>
   selectTotalPrice(state) * state.taxRate;
 

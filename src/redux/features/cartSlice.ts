@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   products: [],
   selectedItems: 0,
-  totalPrice: 0,
+  price: 0,
   tax: 0,
   taxRate: 0.1,
   grandTotal: 0,
@@ -44,6 +44,24 @@ export const cartSlice = createSlice({
     },
   },
 });
+
+export const selectSelectItems = (state: any) => {
+  state.products.reduce((total: number, product: any) => {
+    return Number(total + product.quantity);
+  }, 0);
+};
+
+export const selectTotalPrice = (state: any) => {
+  state.products.reduce((total: number, product: any) => {
+    return Number(total + product.quantity * product.price);
+  }, 0);
+};
+export const selectTotalTax = (state: any) =>
+  selectTotalPrice(state) * state.taxRate;
+
+export const selectGrandTotal = (state: any) => {
+  return selectSelectItems(state) + selectTotalPrice(state) * state.taxRate;
+};
 
 export const { addToCart, updateQuantity, removeCart } = cartSlice.actions;
 

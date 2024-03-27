@@ -1,9 +1,10 @@
 import ProductCard from "../components/ProductCard";
-import getAllProducts from "../data/products";
+import { useGetProductsQuery } from "../redux/features/product/productApi";
 
 const Products = () => {
-  const products = getAllProducts();
-  console.log(products);
+  // const products = getAllProducts();
+  const { data, error, isLoading } = useGetProductsQuery("");
+  console.log(data);
   return (
     <div className="container">
       <h1 className="text-4xl font-bold my-10">All Products</h1>

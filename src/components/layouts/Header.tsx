@@ -43,7 +43,7 @@ const Header = () => {
               to={"/cart"}
             >
               {/* <img src={ring} width="24" height="24" alt="" /> */}
-              <span className="rounded-xl bg-yellow-300 flex items-center justify-center absolute top-[-12px] left-[10px] size-5">
+              <span className="rounded-xl bg-yellow-600 flex items-center justify-center absolute top-[-12px] left-[10px] size-5">
                 {products.length}
               </span>
               <ShoppingCart size={24} />

@@ -5,7 +5,7 @@ import Rating from "./Ratings";
 import { useState } from "react";
 import Modal from "./Modal";
 import { useAppDispatch } from "../redux/hooks";
-import { addToCart } from "../redux/features/cartSlice";
+import { addToCart } from "../redux/features/cart/cartSlice";
 
 const ProductCard = ({ product }: any) => {
   const [showModal, setShowModal] = useState(false);

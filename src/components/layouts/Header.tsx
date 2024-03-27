@@ -8,6 +8,7 @@ import { toggleThemes } from "../../redux/features/themeSlice";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Header = () => {
   const { darkMode } = useAppSelector((store) => store.theme);
+  const { products } = useAppSelector((store) => store.cart);
   const dispatch = useAppDispatch();
   const handleToggle = () => {
     dispatch(toggleThemes());
@@ -42,6 +43,9 @@ const Header = () => {
               to={"/cart"}
             >
               {/* <img src={ring} width="24" height="24" alt="" /> */}
+              <span className="rounded-xl bg-yellow-300 flex items-center justify-center absolute top-[-12px] left-[10px] size-5">
+                {products.length}
+              </span>
               <ShoppingCart size={24} />
             </Link>
           </li>

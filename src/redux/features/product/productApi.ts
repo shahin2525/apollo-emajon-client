@@ -7,11 +7,11 @@ export const productApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://pokeapi.co/api/v2/" }),
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: (name) => `pokemon/${name}`,
+      query: () => "/products",
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery } = pokemonApi;
+export const { useGetProductsQuery } = productApi;

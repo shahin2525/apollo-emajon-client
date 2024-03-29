@@ -3,13 +3,15 @@ import { useGetProductsQuery } from "../redux/features/product/productApi";
 
 const Products = () => {
   // const products = getAllProducts();
-  const { data, error, isLoading } = useGetProductsQuery("");
-  console.log(data);
+  const { data, isLoading } = useGetProductsQuery("");
+  if (isLoading) {
+    return <p>Loading ....</p>;
+  }
   return (
     <div className="container">
       <h1 className="text-4xl font-bold my-10">All Products</h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-        {products.map((product) => (
+        {data.data.map((product: any) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

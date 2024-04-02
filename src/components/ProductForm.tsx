@@ -1,14 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
+import { useCreateProductsMutation } from "../redux/features/product/productApi";
 // import {
 //   useCreateProductMutation,
 //   useUpdateProductMutation,
 // } from "../redux/features/product/productApi";
 
-const ProductForm = () => {
+const ProductForm = ({ onClose }: any) => {
   const { register, handleSubmit, reset } = useForm<any>();
+  const [createProduct, { data }] = useCreateProductsMutation();
+  console.log(data, "data");
   //   const [createProduct] = useCreateProductMutation();
   //   const [updateProduct] = useUpdateProductMutation();
+  const onSubmit = (data: any) => {
+    const modifiedData = {
+      ...data,
+      price: parseInt(data.price),
+      quantity: parseInt(data.quantity),
+      ratings: parseInt(data.ratings),
+      ratingsCount: parseInt(data.ratingsCount),
+      shipping: parseInt(data.shipping),
+      stock: parseInt(data.stock),
+    };
+    createProduct(modifiedData);
+    console.log(modifiedData);
+
+    reset();
+    // onClose();
+  };
+
   //   const onSubmit = (data: any) => {
   //     const modifiedData = {
   //       ...data,
@@ -38,7 +58,7 @@ const ProductForm = () => {
             Add Product
           </h2>
           <div>
-            <form action="">
+            <form action="" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-3 gap-x-6">
                 <div className="mb-5">
                   <label className="block mb-2 font-bold text-gray-600">

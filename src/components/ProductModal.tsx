@@ -19,9 +19,9 @@ const ProductModal = ({ onClose }: any) => {
             onClick={onClose}
           />
           <ProductForm
-          // product={data?.data}
-          // onClose={onClose}
-          // isUpdating={data?.data ? true : false}
+            // product={data?.data}
+            onClose={onClose}
+            // isUpdating={data?.data ? true : false}
           />
         </div>
       </div>

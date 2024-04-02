@@ -26,7 +26,7 @@ const ProductForm = ({ onClose }: any) => {
     console.log(modifiedData);
 
     reset();
-    // onClose();
+    onClose();
   };
 
   //   const onSubmit = (data: any) => {

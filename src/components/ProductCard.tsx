@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Trash2 } from "lucide-react";
 import Rating from "./Ratings";
 import { useState } from "react";
 import Modal from "./Modal";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/features/cart/cartSlice";
+import { useDeleteProductsMutation } from "../redux/features/product/productApi";
 
 const ProductCard = ({ product }: any) => {
+  const [deleteProduct] = useDeleteProductsMutation();
   const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -51,6 +53,16 @@ const ProductCard = ({ product }: any) => {
           >
             Add To Cart
             <ShoppingCart className="inline ml-2" />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteProduct(product._id);
+            }}
+            className="bg-primary text-white px-4 py-2 mt-2 rounded-md w-full"
+          >
+            Remove
+            <Trash2 className="inline ml-1"></Trash2>
           </button>
         </div>
       </div>

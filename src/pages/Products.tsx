@@ -26,8 +26,9 @@ const Products = () => {
         </button>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+        {/* data?.data? */}
         {data.data.map((product: any) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
       {showModal && <ProductModal onClose={onClose}></ProductModal>}

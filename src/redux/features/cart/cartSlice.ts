@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state: any, action: any) => {
       const isExist = state.products.find(
-        (product: any) => product.id === action.payload.id
+        (product: any) => product._id === action.payload._id
       );
 
       if (!isExist) {

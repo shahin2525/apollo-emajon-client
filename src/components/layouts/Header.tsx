@@ -9,6 +9,7 @@ import { toggleThemes } from "../../redux/features/themeSlice";
 const Header = () => {
   const { darkMode } = useAppSelector((store) => store.theme);
   const { products } = useAppSelector((store) => store.cart);
+  console.log(products.length);
   const dispatch = useAppDispatch();
   const handleToggle = () => {
     dispatch(toggleThemes());

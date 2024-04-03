@@ -28,6 +28,7 @@ const ProductCard = ({ product }: any) => {
   };
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
+    console.log("product is clicked", product);
   };
 
   return (

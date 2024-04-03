@@ -1,13 +1,17 @@
 import { X } from "lucide-react";
 import ProductForm from "./ProductForm";
+import { useGetSingleProductQuery } from "../redux/features/product/productApi";
 // import { useGetSingleProductQuery } from "../redux/features/product/productApi";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const ProductModal = ({ onClose }: any) => {
+const ProductModal = ({ onClose, productId }: any) => {
   //   const { data, isLoading } = useGetSingleProductQuery(productId);
-  //   if (isLoading) {
-  //     return <p>Loading...</p>;
-  //   }
+  const { data, isLoading } = useGetSingleProductQuery(productId);
+  console.log(data);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
       <div className="relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[984px] p-4 max-h-[90vh] overflow-auto">
@@ -19,7 +23,7 @@ const ProductModal = ({ onClose }: any) => {
             onClick={onClose}
           />
           <ProductForm
-            // product={data?.data}
+            product={data?.data}
             onClose={onClose}
             // isUpdating={data?.data ? true : false}
           />

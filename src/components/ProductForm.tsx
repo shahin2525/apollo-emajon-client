@@ -6,10 +6,10 @@ import { useCreateProductsMutation } from "../redux/features/product/productApi"
 //   useUpdateProductMutation,
 // } from "../redux/features/product/productApi";
 
-const ProductForm = ({ onClose }: any) => {
+const ProductForm = ({ onClose, product }: any) => {
   const { register, handleSubmit, reset } = useForm<any>();
-  const [createProduct, { data }] = useCreateProductsMutation();
-  console.log(data, "data");
+  const [createProduct] = useCreateProductsMutation();
+  console.log(product?.name, "data");
   //   const [createProduct] = useCreateProductMutation();
   //   const [updateProduct] = useUpdateProductMutation();
   const onSubmit = (data: any) => {
@@ -65,7 +65,7 @@ const ProductForm = ({ onClose }: any) => {
                     Name
                   </label>
                   <input
-                    // defaultValue={product?.name}
+                    defaultValue={product?.name}
                     {...register("name", { required: true })}
                     type="text"
                     placeholder="Put in your fullname."
@@ -77,7 +77,7 @@ const ProductForm = ({ onClose }: any) => {
                     Category
                   </label>
                   <input
-                    // defaultValue={product?.category}
+                    defaultValue={product?.category}
                     {...register("category", { required: true })}
                     type="text"
                     placeholder="Put in your Category"
@@ -92,7 +92,7 @@ const ProductForm = ({ onClose }: any) => {
                     Seller
                   </label>
                   <input
-                    // defaultValue={product?.seller}
+                    defaultValue={product?.seller}
                     {...register("seller", { required: true })}
                     type="text"
                     placeholder="Put in your Seller."
@@ -107,7 +107,7 @@ const ProductForm = ({ onClose }: any) => {
                     Price
                   </label>
                   <input
-                    // defaultValue={product?.price}
+                    defaultValue={product?.price}
                     {...register("price", { required: true })}
                     type="number"
                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
@@ -121,7 +121,7 @@ const ProductForm = ({ onClose }: any) => {
                     Stock
                   </label>
                   <input
-                    // defaultValue={product?.stock}
+                    defaultValue={product?.stock}
                     {...register("stock", { required: true })}
                     type="number"
                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
@@ -135,7 +135,7 @@ const ProductForm = ({ onClose }: any) => {
                     Ratings
                   </label>
                   <input
-                    // defaultValue={product?.ratings}
+                    defaultValue={product?.ratings}
                     {...register("ratings", { required: true })}
                     type="number"
                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
@@ -146,7 +146,7 @@ const ProductForm = ({ onClose }: any) => {
                     Ratings Count
                   </label>
                   <input
-                    // defaultValue={product?.ratingsCount}
+                    defaultValue={product?.ratingsCount}
                     {...register("ratingsCount", { required: true })}
                     type="number"
                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
@@ -160,7 +160,7 @@ const ProductForm = ({ onClose }: any) => {
                     Image
                   </label>
                   <input
-                    // defaultValue={product?.img}
+                    defaultValue={product?.img}
                     {...register("img", { required: true })}
                     type="text"
                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
@@ -171,7 +171,7 @@ const ProductForm = ({ onClose }: any) => {
                     Shipping Charge
                   </label>
                   <input
-                    // defaultValue={product?.shipping}
+                    defaultValue={product?.shipping}
                     {...register("shipping", { required: true })}
                     type="number"
                     className="border border-gray-300 shadow p-3 w-full rounded mb-"
@@ -185,7 +185,7 @@ const ProductForm = ({ onClose }: any) => {
                     Quantity
                   </label>
                   <input
-                    // defaultValue={product?.quantity}
+                    defaultValue={product?.quantity}
                     {...register("quantity", { required: true })}
                     type="number"
                     className="border border-gray-300 shadow p-3 w-full rounded mb-"

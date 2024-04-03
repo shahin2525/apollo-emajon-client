@@ -1,18 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ShoppingCart, Trash2 } from "lucide-react";
+import { Edit2, ShoppingCart, Trash2 } from "lucide-react";
 import Rating from "./Ratings";
 import { useState } from "react";
 import Modal from "./Modal";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/features/cart/cartSlice";
 import { useDeleteProductsMutation } from "../redux/features/product/productApi";
+import ProductModal from "./ProductModal";
 
 const ProductCard = ({ product }: any) => {
   const [deleteProduct] = useDeleteProductsMutation();
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const dispatch = useAppDispatch();
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const handleEditModalClose = () => {
+    setShowEditModal(false);
+  };
   const handleShowModal = (product: any) => {
     setSelectedProduct(product);
     setShowModal(true);
@@ -57,15 +62,33 @@ const ProductCard = ({ product }: any) => {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              // deleteProduct(product._id);
+              setShowEditModal(true);
+            }}
+            className="bg-green-400 text-white px-4 py-2 mt-2 rounded-md w-full"
+          >
+            Edit
+            <Edit2 className="inline ml-1"></Edit2>
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
               deleteProduct(product._id);
             }}
-            className="bg-primary text-white px-4 py-2 mt-2 rounded-md w-full"
+            className="bg-red-500 text-white px-4 py-2 mt-2 rounded-md w-full"
           >
             Remove
             <Trash2 className="inline ml-1"></Trash2>
           </button>
         </div>
       </div>
+      {showEditModal && (
+        <ProductModal
+          productId={product._id}
+          onClick={() => setShowEditModal(true)}
+          onClose={handleEditModalClose}
+        ></ProductModal>
+      )}
     </div>
   );
 };

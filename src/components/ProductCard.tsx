@@ -86,6 +86,7 @@ const ProductCard = ({ product }: any) => {
         <ProductModal
           productId={product._id}
           onClick={() => setShowEditModal(true)}
+          isUpdating={true}
           onClose={handleEditModalClose}
         ></ProductModal>
       )}

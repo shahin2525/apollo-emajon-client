@@ -4,7 +4,7 @@ import { useGetSingleProductQuery } from "../redux/features/product/productApi";
 // import { useGetSingleProductQuery } from "../redux/features/product/productApi";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const ProductModal = ({ onClose, productId }: any) => {
+const ProductModal = ({ onClose, productId, isUpdating }: any) => {
   //   const { data, isLoading } = useGetSingleProductQuery(productId);
   const { data, isLoading } = useGetSingleProductQuery(productId);
   console.log(data);
@@ -25,6 +25,7 @@ const ProductModal = ({ onClose, productId }: any) => {
           <ProductForm
             product={data?.data}
             onClose={onClose}
+            isUpdating={isUpdating}
             // isUpdating={data?.data ? true : false}
           />
         </div>

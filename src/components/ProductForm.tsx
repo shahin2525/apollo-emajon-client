@@ -1,14 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
-import { useCreateProductsMutation } from "../redux/features/product/productApi";
+import {
+  useCreateProductsMutation,
+  useUpdateProductsMutation,
+} from "../redux/features/product/productApi";
 // import {
 //   useCreateProductMutation,
 //   useUpdateProductMutation,
 // } from "../redux/features/product/productApi";
 
-const ProductForm = ({ onClose, product }: any) => {
+const ProductForm = ({ onClose, product, isUpdating }: any) => {
   const { register, handleSubmit, reset } = useForm<any>();
   const [createProduct] = useCreateProductsMutation();
+  const [updateProduct] = useUpdateProductsMutation();
   console.log(product?.name, "data");
   //   const [createProduct] = useCreateProductMutation();
   //   const [updateProduct] = useUpdateProductMutation();
@@ -22,8 +26,16 @@ const ProductForm = ({ onClose, product }: any) => {
       shipping: parseInt(data.shipping),
       stock: parseInt(data.stock),
     };
-    createProduct(modifiedData);
-    console.log(modifiedData);
+    if (isUpdating) {
+      updateProduct({
+        id: product._id,
+        body: modifiedData,
+      });
+    } else {
+      createProduct(modifiedData);
+    }
+
+    // console.log(modifiedData);
 
     reset();
     onClose();
@@ -55,7 +67,7 @@ const ProductForm = ({ onClose, product }: any) => {
       <div className=" flex items-center py-8 px-6">
         <div className="w-full">
           <h2 className="text-center text-primary font-bold text-2xl uppercase mb-10">
-            Add Product
+            {isUpdating ? "Edit Product" : "Add Product"}
           </h2>
           <div>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
